@@ -8,8 +8,9 @@ $text = date('Y-m-d H:i:s') . '<br>';
 if ($handle === false) {
     echo 'Soubor se nepodařilo otevřít!';
 } else {
+
   fwrite ($handle, $text);
-    fclose($handle);
+    fclose($handle);}
 
     $handle = fopen('pristupy.txt', 'r');
 
@@ -18,4 +19,4 @@ if ($handle === false) {
         echo 'Soubor se nepodařilo otevřít!';
     } else {
 echo fread($handle, 1000);
-fclose($handle);}}
+fclose($handle);}
