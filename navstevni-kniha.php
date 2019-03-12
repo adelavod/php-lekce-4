@@ -11,12 +11,14 @@
 </head>
 <body>
 <br>
-<div class="container">
+<div class="jumbotron" style="background-color: seashell">
+<div class="container col-md-8">
 
     <form  action="vlozit.php" method="POST">
-        <p>Návštěvní kniha</p>
+        <h4>Návštěvní kniha</h4>
+        <br>
 
-        <div class="form-group">
+        <div class="form-group" >
             <label for="jmeno">Jméno</label>
             <input type="text" class="form-control" name="jmeno">
         </div>
@@ -29,10 +31,12 @@
         <div class="form-group">
         <input type="submit" value="poslat"><!-- tlačítko pro odeslání formuláře -->
         </div>
-
-
     </form>
+</div>
+</div>
 
+
+<div class="jumbotron" style="background-color: seashell">
 <?php  //výpis z návštěvní knihy
 if (file_exists('soubor.txt')) {
 
@@ -40,14 +44,23 @@ if (file_exists('soubor.txt')) {
 
     if ($handle === false) {echo 'Soubor se nepodařilo otevřít!';}
 
-    else {echo fread($handle, 1000);
+    else
+    { if($handle){$array = explode ("\n",fread($handle,4096 ));} //rozdeli soubot.txt na pole
+    //sem dolů potřebuješ napsat kód, co ti vypíše pole $serazene pekne pod sebe
 
-        fclose($handle);}}
+        $serazene = array_reverse($array);
+
+foreach ($serazene as $prispevek){echo $prispevek;}
+  }
+
+        fclose($handle);
+}
 
 else {echo "Zatím nebyly vloženy žádné příspěvky.";}
 
 
     ?>
 </div>
+
 </body>
 </html>
